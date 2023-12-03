@@ -2,5 +2,8 @@
 set -e
 
 # Stop the running container (if any)
-cid='docker ps | awk -F " " '{print $1}''
-docker rm -f $cid
+cid=$(docker ps -q)
+
+if [ -n "$cid" ]; then
+  docker rm -f $cid
+fi
